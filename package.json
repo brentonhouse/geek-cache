@@ -1,0 +1,58 @@
+{
+	"name": "@brentonhouse/template-package",
+	"version": "1.0.3",
+	"description": "Base template for creating a new npm package",
+	"main": "index.js",
+	"scripts": {
+		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
+		"postinstall": "tiapp-install-module",
+		"postuninstall": "tiapp-uninstall-module",
+		"prep": "npm install --ignore-scripts && npm run list",
+		"prepublishOnly": "git pull && bump",
+		"test": "echo \"no test specified\" && exit 0"
+	},
+	"author": {
+		"name": "Brenton House",
+		"email": "brenton.house@gmail.com",
+		"url": "http://brenton.house"
+	},
+	"maintainers": [
+		{
+			"name": "Brenton House",
+			"email": "brenton.house@gmail.com",
+			"url": "https://brenton.house"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "github:brentonhouse/template-package"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/brentonhouse/template-package/issues"
+	},
+	"homepage": "https://github.com/brentonhouse/template-package#readme",
+	"keywords": [
+		"titanium",
+		"mobile",
+		"alloy",
+		"turbo",
+		"axway",
+		"appcelerator",
+		"ios",
+		"android",
+		"iphone",
+		"ipad",
+		"template",
+		"brenton-house"
+	],
+	"titanium": {},
+	"devDependencies": {
+		"@titanium/eslint-config": "0.0.15",
+		"eslint": "^7.8.0",
+		"fs-extra": "^9.0.1",
+		"lodash": "^4.17.20"
+	},
+	"dependencies": {},
+	"private": true
+}
