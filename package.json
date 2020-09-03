@@ -2,7 +2,7 @@
 	"name": "@geek/cache",
 	"version": "0.0.2",
 	"description": "Caching module for Node.js and Axway Titanium",
-	"main": "index.js",
+	"main": "Cache.js",
 	"scripts": {
 		"list": "npm pack && tar -xvzf *.tgz && rm -rf package *.tgz",
 		"prep": "npm install --ignore-scripts && npm run list",
@@ -52,5 +52,5 @@
 		"lodash": "^4.17.20"
 	},
 	"dependencies": {},
-	"private": true
+	"private": false
 }

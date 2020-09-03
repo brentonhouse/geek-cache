@@ -7,6 +7,7 @@
 .github
 
 tiapp.xml
+scripts
 
 # OS Directories and Files
 .DS_Store
