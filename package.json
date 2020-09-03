@@ -1,6 +1,6 @@
 {
 	"name": "@geek/cache",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Caching module for Node.js and Axway Titanium",
 	"main": "Cache.js",
 	"scripts": {
