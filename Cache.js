@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const logger = require('@geek/logger').createLogger({ meta: { filename: __filename }});
+const logger = require('@geek/logger').createLogger('@geek/cache',{ meta: { filename: __filename }});
 
 const STORE = Symbol('store');
 const TTL = Symbol('ttl');

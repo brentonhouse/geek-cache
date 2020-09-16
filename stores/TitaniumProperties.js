@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const stringify = require('fast-safe-stringify');
-const logger = require('@geek/logger').createLogger({ meta: { filename: __filename }});
-
+const logger = require('@geek/logger').createLogger('@geek/cache',{ meta: { filename: __filename }});
 const MAX = Symbol('max');
 const TTL = Symbol('ttl');
 const CACHE = Symbol('cache');

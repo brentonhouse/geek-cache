@@ -2,7 +2,7 @@ const MAX = Symbol('max');
 const TTL = Symbol('ttl');
 const CACHE = Symbol('cache');
 
-const logger = require('@geek/logger');
+const logger = require('@geek/logger').createLogger('@geek/cache',{ meta: { filename: __filename }});
 
 const store_name = 'MemoryStore';
 
