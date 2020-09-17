@@ -39,7 +39,7 @@ class MemoryStore {
 	async get (key) {
 		logger.track(`💰  you are here → ${store_name}.get()`);
 		const result = await get(this, key);
-		logger.debug(`💰  get result: ${JSON.stringify(result, null, 2)}`);
+		logger.verbose(`💰  get result: ${JSON.stringify(result, null, 2)}`);
 		return result;
 	}
 
@@ -103,8 +103,9 @@ const set = async (self, key, value, ttl) => {
 };
 
 const del = async (self, key) => {
-
+	logger.track(`💰  you are here → ${store_name}.del(${key})`);
 	if (typeof key !== 'string') {
+		console.error(`💰  ${store_name}.del() → TypeError: key must be a string`);
 		throw new TypeError('key must be a string');
 	}
 
@@ -112,16 +113,16 @@ const del = async (self, key) => {
 };
 
 const get = async (self, key) => {
-
+	logger.track(`💰  you are here → ${store_name}.get(${key})`);
 	if (typeof key !== 'string') {
+		console.error(`💰  ${store_name}.get() → TypeError: key must be a string`);
 		throw new TypeError('key must be a string');
 	}
 
 	const entry = self[CACHE].get(key);
-	logger.debug(`💰  entry: ${JSON.stringify(entry, null, 2)}`);
+	logger.verbose(`💰  entry: ${JSON.stringify(entry, null, 2)}`);
 
 	if (entry) {
-
 		if (isStale(self, entry)) {
 			logger.track(`💰  cache miss (${key})`);
 			await del(self, key);
@@ -152,12 +153,13 @@ const isStale = (self, entry = {}) => {
 
 class Entry {
 	constructor (params = {}) {
-	  const { key, value, length = 0, now = Date.now(), ttl = 0 } = params;
+	  const { key, value, length = 0, now = Date.now(), ttl = 0, hash } = params;
 	  this.key = key;
 	  this.value = value;
 	  this.length = length;
 	  this.now = now;
 	  this.ttl = ttl;
+	  this.hash = hash;
 	}
 }
 

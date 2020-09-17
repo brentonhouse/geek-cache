@@ -60,16 +60,16 @@ class TitaniumPropertiesStore {
 	async get(key) {
 		// logger.track(`💰  you are here → ${store_name}.get()`);
 		const result = await get(this, key);
-		logger.debug(`💰  get result: ${JSON.stringify(result, null, 2)}`);
+		// logger.verbose(`💰  get result: ${JSON.stringify(result, null, 2)}`);
 		return result;
 	}
 
-	async entry(key) {
-		// logger.track(`💰  you are here → ${store_name}.entry()`);
-		const result = await entry(this, key);
-		// logger.debug(`💰  entry result: ${JSON.stringify(result, null, 2)}`);
-		return result;
-	}
+	// async entry(key) {
+	// 	// logger.track(`💰  you are here → ${store_name}.entry()`);
+	// 	const result = await entry(this, key);
+	// 	// logger.verbose(`💰  entry result: ${JSON.stringify(result, null, 2)}`);
+	// 	return result;
+	// }
 
 	async has(key) {
 		logger.track(`💰  you are here → ${store_name}.has(${key})`);
@@ -136,43 +136,42 @@ const refresh = async self => {
 	// console.error(self[CACHE]);
 };
 
-const entry = async (self, key, force = false) => {
-	logger.track(`💰  you are here → ${store_name}.entry(${key})`);
-	if (typeof key !== 'string') {
-		console.error('💰  cache.entry() → TypeError: key must be a string');
-		throw new TypeError('key must be a string');
-	}
+// const entry = async (self, key, force = false) => {
+// 	logger.track(`💰  you are here → ${store_name}.entry(${key})`);
+// 	if (typeof key !== 'string') {
+// 		console.error(`💰  ${store_name}.entry() → TypeError: key must be a string`);
+// 		throw new TypeError('key must be a string');
+// 	}
 
-	const entry = self[CACHE].get(key);
-	// logger.debug(`💰  entry: ${JSON.stringify(entry, null, 2)}`);
+// 	const entry = self[CACHE].get(key);
+// 	// logger.debug(`💰  entry: ${JSON.stringify(entry, null, 2)}`);
 
-	if (!force && entry) {
-		if (isStale(self, entry)) {
-			logger.debug(`💰  cache miss (${key})`);
-			await del(self, key);
-			await del(self, key);
-			return undefined;
-		}
+// 	if (!force && entry) {
+// 		if (isStale(self, entry)) {
+// 			logger.debug(`💰  cache miss (${key})`);
+// 			await del(self, key);
+// 			await del(self, key);
+// 			return undefined;
+// 		}
 
-		logger.debug(`💰  cache hit (${key})`);
-		return entry;
-	}
-};
+// 		logger.debug(`💰  cache hit (${key})`);
+// 		return entry;
+// 	}
+// };
 
 const get = async (self, key) => {
 	logger.track(`💰  you are here → ${store_name}.get(${key})`);
 	if (typeof key !== 'string') {
-		console.error('💰  cache.get() → TypeError: key must be a string');
+		console.error(`💰  ${store_name}.get() → TypeError: key must be a string`);
 		throw new TypeError('key must be a string');
 	}
 
 	const entry = self[CACHE].get(key);
-	// logger.debug(`🦠  entry: ${JSON.stringify(entry, null, 2)}`);
+	// logger.verbose(`🦠  entry: ${JSON.stringify(entry, null, 2)}`);
 
 	if (entry) {
 		if (isStale(self, entry)) {
 			logger.debug(`💰  cache miss (${key})`);
-			await del(self, key);
 			await del(self, key);
 			return undefined;
 		}
@@ -260,7 +259,7 @@ const clear = async self => {
 const del = async (self, key) => {
 	logger.track(`💰  you are here → ${store_name}.del(${key})`);
 	if (typeof key !== 'string') {
-		console.error('💰  cache.del() → TypeError: key must be a string');
+		console.error(`💰  ${store_name}.del() → TypeError: key must be a string`);
 		throw new TypeError('key must be a string');
 	}
 
