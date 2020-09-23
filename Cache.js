@@ -92,20 +92,20 @@ class Cache {
 		}
 	}
 
-	// async entry (key) {
-	// 	try {
-	// 		if (typeof key !== 'string') {
-	// 			console.error(`⛔  cache.entry(${key}): invalid key`);
-	// 			throw new TypeError('key must be a string');
-	// 		}
-	// 		return await this[STORE].entry(key);
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 		if (! this[IGNORE_ERRORS]) {
-	// 			throw error;
-	// 		}
-	// 	}
-	// }
+	async entry (key) {
+		try {
+			if (typeof key !== 'string') {
+				console.error(`⛔  cache.entry(${key}): invalid key`);
+				throw new TypeError('key must be a string');
+			}
+			return await this[STORE].entry(key);
+		} catch (error) {
+			console.error(error);
+			if (! this[IGNORE_ERRORS]) {
+				throw error;
+			}
+		}
+	}
 
 	async has (key) {
 		try {
