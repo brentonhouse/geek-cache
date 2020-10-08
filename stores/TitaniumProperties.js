@@ -118,7 +118,7 @@ const refresh = async self => {
 		const entry = Ti.App.Properties.getObject(name);
 		if (_.isObject(entry)) {
 			if (isStale(self, entry)) {
-				await del(entry.key);
+				await del(self, entry.key);
 			} else {
 				entries.push([ entry.key, entry ]);
 			}
